@@ -1,6 +1,17 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Book, Author, BookInstance, Genre
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import permission_required
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+import datetime
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Author
+from .forms import RenewBookForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 def index(request):
@@ -27,16 +38,14 @@ def index(request):
                  'num_visits': num_visits},
     )
 
-    class BookListView(generic.ListView):
-        model = Book
-        paginate_by = 1
 
-    class AuthorListView(generic.ListView):
-        model = Author
-        paginate_by = 1
+class BookListView(generic.ListView):
+    model = Book
+    paginate_by = 1
 
-    class AuthorDetailView(generic.DetailView):
-        model = Author
 
-    class BookDetailView(generic.DetailView):
-        model = Book
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 2
+
+
