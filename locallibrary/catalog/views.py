@@ -37,15 +37,4 @@ def index(request):
                  'num_instances_available': num_instances_available, 'num_authors': num_authors,
                  'num_visits': num_visits},
     )
-
-
-class BookListView(generic.ListView):
-    model = Book
-    paginate_by = 1
-
-
-class AuthorListView(generic.ListView):
-    model = Author
-    paginate_by = 2
-
-
+=
