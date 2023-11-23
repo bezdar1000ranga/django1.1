@@ -1,5 +1,6 @@
-import uuid
+import uuid  # Required for unique book instances
 from datetime import date
+from django import forms
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
